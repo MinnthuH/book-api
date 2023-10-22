@@ -61,7 +61,7 @@ class AuthorController extends Controller
             ]);
         }
 
-        $token = auth()->user()->createToken('authToken');
+       $token = auth()->user()->createToken('auth_token')->accessToken;
 
         return response()->json([
             'status'=>1,
@@ -74,12 +74,26 @@ class AuthorController extends Controller
     // AUTHOR PROFILE METHOD
     public function profileAuthor()
     {
+        $user = auth()->user();
+
+        return response()->json([
+
+            'status'=>1,
+            'message'=> 'Author profile',
+            'data'=> $user
+        ]);
 
     }
 
     // AUTHOR LOGOUT METHOD
-    public function logoutAuthor()
+    public function logoutAuthor(Request $request)
     {
+        $request->user()->token()->revoke();
+
+        return response()->json([
+            'status'=>1,
+            'message'=> 'Author logout successfully'
+        ]);
 
     }
 

@@ -11,5 +11,6 @@ class Book extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['title','description','price'];
+    protected $fillable = ['author_id','title','description','price'];
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Book;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -15,4 +16,8 @@ class Author extends Model implements AuthenticatableContract
     public $timestamps = false;
 
     protected $fillable = ['name','email','password','phone'];
+
+    public function books(){
+        return $this->hasMany(Book::class);
+    }
 }
